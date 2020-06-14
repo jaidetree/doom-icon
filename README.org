@@ -1,0 +1,59 @@
+* DOOM Icon
+A project to track my campaign for creating a fancy [[github:hlissner/doom-emacs][Doom Emacs]] icon.
+
+#+CAPTION:  Current draft of proposed Emacs Doom icon
+[[./doom.png]]
+
+** Inspiration
+After spending the past 10 days learning Emacs Doom, I've been really enjoying
+learning more about emacs, org, doom, and especially emacs-lisp.
+It's no longer intimidating! When installing [[github:d12frosted/homebrew-emacs-plus][Emacs Plus]] it comes
+(or at least, it used to) come with the Spacemacs icon.
+It looks good, but it's just not Doom. This is Doom.
+
+
+** What's next?
+*** TODO Collect feedback
+Make alterations, refine shapes, fix any bad resizes
+*** TODO Try digitally painting a version
+Can pull more life, texture, and structure out of the character
+*** TODO Try 3D modeling a version
+Seems like good practice for Blender's sculpting tools
+
+
+** Goals
+- Create a PR for emacs-plus :package:
+- Push myself creatively :art:
+- Have fun :sunglasses:
+
+
+** Questions
+*** How do I use this icon?
+- Download [[./doom.png][doom.png]]
+**** On OS X
+- Open doom.png in preview
+- Copy it into your clipboard
+- Get info on your Emacs App in Finder
+- Click on the icon on the top right to highlight it
+- Paste with =cmd+v=
+[[./howto-use-icon.gif]]
+**** Linux & Windows
+- I have no idea. Please let me know!
+*** Want feedback?
+Awesome. Feel free to reach out to me on the Doom discord or create an issue on this repo. I love design-centric feedback, "By changing X, it will improve Y because Z". I'll do my best with other feedback, but unless there's some sense of majority opinion in favor of it, it's at my discretion to try or not. But I recognize I'm by no means a spectacular designer so I know there's room for improvement so I'm sure any feedback will help.
+*** Since you shared the sources would you be open to PRs with improvements?
+Very yes!
+*** So you're trying to make this hideous thing the default\official Doom Emacs Icon?
+Nope. It would be great if it was an additional option for builds like Emacs Plus.
+*** What if I'm seeing the icon and I hate it. I even kinda hate you a little bit for even making it?
+That's pretty brutal comrade. But if you feel that way, it is what it is.
+*** Are you really going recreate as a digital painting and 3D model it?
+Ideally yes! I have some experience with both those mediums and it seems like a fun project. If feedback mostly comes in like my imaginary enemy above, then I may drop the project. Once again, feedback helps a lot here!
+*** How do I convert the iconset folder into an =icns= file?
+#+BEGIN_SRC
+iconutil -c icns ./doom.iconset
+#+END_SRC
+*** How come you used Adobe Illustrator and Adobe XD instead of other open-source projects?
+That's what I like, that's what I'm used to. If you would like to create a PR to swap them out for something open-source I'm all for it. As long as I can still edit it in my tools of choice I see no issue with that.
+*** Do you feel you're maybe overthinking this?
+Yes! Yes I probably am.
