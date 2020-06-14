@@ -11,6 +11,7 @@ It's no longer intimidating! When installing [[github:d12frosted/homebrew-emacs-
 (or at least, it used to) come with the Spacemacs icon.
 It looks good, but it's just not Doom. This is Doom.
 
+The game Doom inspired the emacs hacker [[github:hlissner][Henrik Lissner]] so naturally a cacodemon felt like the most interesting source to draw from and now here we are.
 
 ** What's next?
 *** TODO Collect feedback
