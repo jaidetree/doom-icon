@@ -29,7 +29,7 @@ Seems like good practice for Blender's sculpting tools
 
 ** Questions
 *** How do I use this icon?
-- Download [[./doom.png][doom.png]]
+- Download https://raw.githubusercontent.com/eccentric-j/doom-icon/master/doom.png
 **** On OS X
 - Open doom.png in preview
 - Copy it into your clipboard
