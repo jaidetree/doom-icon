@@ -39,7 +39,6 @@ Seems like good practice for Blender's sculpting tools
 - Paste with =cmd+v=
 [[./howto-use-icon.gif]]
 **** Linux & Windows
-- I have no idea. Please let me know!
 #+BEGIN_SRC
 ICON="$HOME/.local/share/icons/doom.png"
 DESKTOP_FILE=/usr/local/share/applications/emacs.desktop
