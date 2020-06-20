@@ -38,7 +38,7 @@ Seems like good practice for Blender's sculpting tools
 - Click on the icon on the top right to highlight it
 - Paste with =cmd+v=
 [[./howto-use-icon.gif]]
-**** Linux & Windows
+**** Linux
 #+BEGIN_SRC
 ICON="$HOME/.local/share/icons/doom.png"
 DESKTOP_FILE=/usr/local/share/applications/emacs.desktop
@@ -46,6 +46,8 @@ wget https://raw.githubusercontent.com/eccentric-j/doom-icon/master/doom.png -O 
 sudo --preserve-env=ICON,DESKTOP_FILE sed -i "s|Icon=.*|Icon=$ICON|" $DESKTOP_FILE
 #+END_SRC
 (Thanks to [[https://github.com/drchsl][@drchsl]])
+**** Windows
+- I have no idea. Please let me know!
 *** Want feedback?
 Awesome. Feel free to reach out to me on the Doom discord or create an issue on this repo. I love design-centric feedback, "By changing X, it will improve Y because Z". I'll do my best with other feedback, but unless there's some sense of majority opinion in favor of it, it's at my discretion to try or not. But I recognize I'm by no means a spectacular designer so I know there's room for improvement so I'm sure any feedback will help.
 *** Since you shared the sources would you be open to PRs with improvements?
