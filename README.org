@@ -47,7 +47,22 @@ sudo --preserve-env=ICON,DESKTOP_FILE sed -i "s|Icon=.*|Icon=$ICON|" $DESKTOP_FI
 #+END_SRC
 (Thanks to [[https://github.com/drchsl][@drchsl]])
 **** Windows
-- I have no idea. Please let me know!
+- Download [[http://angusj.com/resourcehacker/#download][Resource Hacker]]
+- Use [[https://convertico.com/][this]] site to convert the PNG you want to an ICO
+- Save in a useful place
+
+The below section should be replicated for both =emacs.exe= and =emacsclientw.exe=
+
+***** Replace icon for exe
+- Locate your emacs install directory (depends on if it has been installer with =choco= or the official installer)
+- Open Resource Hacker
+- Drag the exe into the window
+- Left click on "Icon" on the left tree
+- Right click -> Replace icon
+- Locate the ICO file from before
+- Replace
+- Save
+
 *** Want feedback?
 Awesome. Feel free to reach out to me on the Doom discord or create an issue on this repo. I love design-centric feedback, "By changing X, it will improve Y because Z". I'll do my best with other feedback, but unless there's some sense of majority opinion in favor of it, it's at my discretion to try or not. But I recognize I'm by no means a spectacular designer so I know there's room for improvement so I'm sure any feedback will help.
 *** Since you shared the sources would you be open to PRs with improvements?
