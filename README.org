@@ -1,10 +1,16 @@
 * DOOM Icon
-A project to track my campaign for creating a fancy [[github:hlissner/doom-emacs][Doom Emacs]] icon.
 
-#+CAPTION:  Current draft of proposed Emacs Doom icon
-[[./doom.png]]
+A fancy alternative [[github:hlissner/doom-emacs][Doom Emacs]] icon.
+
+#+caption:  Crowd favorite
+[[./cute-doom/doom.png]]
+
+#+caption: The original
+
+[[./abject-doom/doom.png]]
 
 ** Inspiration
+
 After spending the past 10 days learning Emacs Doom, I've been really enjoying
 learning more about emacs, org, doom, and especially emacs-lisp.
 It's no longer intimidating! When installing [[github:d12frosted/homebrew-emacs-plus][Emacs Plus]] it comes
@@ -14,46 +20,63 @@ It looks good, but it's just not Doom. This is Doom.
 The game Doom inspired the emacs hacker [[https://github.com/hlissner][Henrik Lissner]] so naturally a cacodemon felt like the most interesting source to draw from and now here we are.
 
 ** What's next?
+
 *** TODO Collect feedback
 Make alterations, refine shapes, fix any bad resizes
+
 *** TODO Try digitally painting a version
 Can pull more life, texture, and structure out of the character
+
 *** TODO Try 3D modeling a version
 Seems like good practice for Blender's sculpting tools
 
 
 ** Goals
+
 - Create a PR for emacs-plus :package:
 - Push myself creatively :art:
 - Have fun :sunglasses:
 
 
 ** Questions
+
 *** How do I use this icon?
-- Download https://raw.githubusercontent.com/eccentric-j/doom-icon/master/doom.png
+
+- Download the latest doom icon files [[https://github.com/owner/repository/releases/latest/download/doom-icons.zip]]
+
 **** On OS X
-- Open doom.png in preview
-- Copy it into your clipboard
-- Get info on your Emacs App in Finder
-- Click on the icon on the top right to highlight it
-- Paste with =cmd+v=
+- Download the =doom.icns= file from one of the available icon directories
+- In another tab or window, open the directory containing your Emacs.app
+- Right or option-click Emacs.app and select "Get Info"
+- Drag the `doom.icns` file to the icon on the top-left of the "Get Info" window
+
 [[./howto-use-icon.gif]]
+
 **** Linux
-#+BEGIN_SRC
+
+(Thanks to [[https://github.com/drchsl][@drchsl]])
+
+#+begin_src bash
 ICON="$HOME/.local/share/icons/doom.png"
 DESKTOP_FILE=/usr/local/share/applications/emacs.desktop
 wget https://raw.githubusercontent.com/eccentric-j/doom-icon/master/doom.png -O "$ICON" &&
 sudo --preserve-env=ICON,DESKTOP_FILE sed -i "s|Icon=.*|Icon=$ICON|" $DESKTOP_FILE
-#+END_SRC
-(Thanks to [[https://github.com/drchsl][@drchsl]])
+#+end_src
+
+
 **** Windows
+
+(Thanks to [[https://github.com/elken][@elken]])
+
+- Download the =doom.ico= file from one of the available icon directories
+- Keep the containing directory open
 - Download [[http://angusj.com/resourcehacker/#download][Resource Hacker]]
-- Use [[https://convertico.com/][this]] site to convert the PNG you want to an ICO
 - Save in a useful place
 
-The below section should be replicated for both =emacs.exe= and =emacsclientw.exe=
+Repeat the below section for both =emacs.exe= and =emacsclientw.exe=
 
 ***** Replace icon for exe
+
 - Locate your emacs install directory (depends on if it has been installer with =choco= or the official installer)
 - Open Resource Hacker
 - Drag the exe into the window
@@ -64,20 +87,61 @@ The below section should be replicated for both =emacs.exe= and =emacsclientw.ex
 - Save
 
 *** Want feedback?
-Awesome. Feel free to reach out to me on the Doom discord or create an issue on this repo. I love design-centric feedback, "By changing X, it will improve Y because Z". I'll do my best with other feedback, but unless there's some sense of majority opinion in favor of it, it's at my discretion to try or not. But I recognize I'm by no means a spectacular designer so I know there's room for improvement so I'm sure any feedback will help.
+
+Yes please! I love design-focused feedback. For example, "Can you change x so that y
+because z?" is much more helpful to me than "x hurts my eyes".
+
 *** Since you shared the sources would you be open to PRs with improvements?
+
 Very yes!
+
+*** What if I made my own icon I would like to add as an alternative?
+
+Alternatives are welcome! Please note, there are some requirements:
+
+- doom.png 1024x1024 pixels in size
+- doom.iconset folder with expected sizes see [[./cute-icon/src/doom.iconset]] for reference
+- doom.icns file for OS X (I can help with this if needed)
+- doom.ico file for Windows users (use [[https://convertico.com/]])
+
+*** Could the png, .icns, and .ico be generated automatically from a gh action?
+
+This is a good idea and PRs are welcome but I don't think it's worth it until there
+are more alternatives.
+
 *** So you're trying to make this hideous thing the default\official Doom Emacs Icon?
+
 Nope. It would be great if it was an additional option for builds like Emacs Plus.
+
 *** What if I'm seeing the icon and I hate it. I even kinda hate you a little bit for even making it?
+
 That's pretty brutal comrade. But if you feel that way, it is what it is.
-*** Are you really going recreate as a digital painting and 3D model it?
-Ideally yes! I have some experience with both those mediums and it seems like a fun project. If feedback mostly comes in like my imaginary enemy above, then I may drop the project. Once again, feedback helps a lot here!
+
+*** Are you really going to do a digital painting and 3D model it?
+
+Ideally yes! I have some experience with both those mediums and it seems like a
+fun project. Depends on the feedback and motivation of course.
+
 *** How do I convert the iconset folder into an =icns= file?
-#+BEGIN_SRC
+
+#+begin_src bash
 iconutil -c icns ./doom.iconset
-#+END_SRC
+#+end_src
+
 *** How come you used Adobe Illustrator and Adobe XD instead of other open-source projects?
-That's what I like, that's what I'm used to. If you would like to create a PR to swap them out for something open-source I'm all for it. As long as I can still edit it in my tools of choice I see no issue with that.
+
+That's what I like, that's what I'm used to. If you want to make a PR to replace
+these icons more power to you.
+
 *** Do you feel you're maybe overthinking this?
+
 Yes! Yes I probably am.
+
+** Special Thanks
+
+People who have inspired or contributed to this project
+
+- @drchsl
+- @elken
+- @shankar2k
+- @tecosaur
