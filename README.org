@@ -3,11 +3,11 @@
 A fancy alternative [[github:hlissner/doom-emacs][Doom Emacs]] icon.
 
 #+caption:  Crowd favorite
-[[./cute-doom/doom.png]]
+[[./cute-doom/src/doom.iconset/icon_128x128.png]]
 
 #+caption: The original
 
-[[./abject-doom/doom.png]]
+[[./abject-doom/src/doom.iconset/icon_128x128.png]]
 
 ** Inspiration
 
