@@ -1,0 +1,140 @@
+#!/usr/bin/env bb
+
+(ns scripts.release
+  (:require
+   [clojure.java.shell :refer [sh]]
+   [clojure.string :as s]
+   [clojure.pprint :refer [pprint]]
+   [clojure.tools.cli :refer [parse-opts]]
+   [babashka.fs :as fs]))
+
+(defn latest-tag
+  []
+  (->> (-> (sh "git" "ls-remote" "--tags" "--sort" "-taggerdate" "origin")
+           (:out)
+           (s/split #"\n"))
+       (map #(s/split % #"\t"))
+       (first)
+       (second)
+       (fs/file-name)))
+
+(defn try-int
+  [int-str]
+  (try
+    (Integer/parseInt int-str)
+    (catch NumberFormatException _e int-str)))
+
+(defn parse-semver
+  [version-str]
+  (->> (s/split version-str #"\.")
+       (map try-int)
+       (zipmap [:major :minor :patch])))
+
+(defn bump
+  [version-map]
+  (update version-map :patch inc))
+
+(defn version->str
+  [version-map]
+  (s/join "." ((juxt :major :minor :patch) version-map)))
+
+(defn latest-version
+  []
+  (-> (latest-tag)
+      (parse-semver)
+      (bump)
+      (version->str)))
+
+(defn path
+  [& paths]
+  (str (apply fs/path paths)))
+
+(defn project-dir
+  [file]
+  (str (fs/real-path (path (fs/parent file) ".."))))
+
+(defn safe-copy
+  [src dest]
+  (fs/create-dirs (fs/parent dest))
+  (fs/copy src dest))
+
+(defn copy-icons
+  [version tmpdir files]
+  (let [base-dir (str "doom-icons-" version)
+        src-dir (path tmpdir base-dir)]
+    {:src-files files
+     :files (doall
+             (for [file files]
+               (let [dest (path src-dir file)]
+                 (safe-copy file dest)
+                 (str dest))))
+     :version version
+     :base-dir base-dir
+     :tmp tmpdir
+     :src-dir src-dir}))
+
+(defn zip-icons
+  [{:keys [tmp base-dir] :as state}]
+  (let [out (path (project-dir *file*) "release" (str base-dir ".zip"))
+        in (str base-dir)]
+    (println (:out (sh "zip" "-r" out in
+                       :dir (str tmp))))
+    (assoc state :zip out)))
+
+(defn latest-copy
+  [is-latest {:keys [zip] :as state}]
+  (if is-latest
+    (do
+      (fs/copy zip (path "release" "doom-icons.zip") {:replace-existing true})
+      (assoc state :latest true))
+    state))
+
+(defn clean
+  [{:keys [tmp] :as state}]
+  (fs/delete-tree tmp)
+  (assoc state :is-deleted true))
+
+(def cli-options
+  [["-t" "--tag VERSION" "Version tag for .zip"
+    :parse-fn str]
+   ["-l" "--latest"]
+   ["-h" "--help"]])
+
+(defn create-icons-release
+  [{:keys [is-latest version]}]
+  (let [tmpdir (fs/create-temp-dir {:prefix "doom-icons"})]
+    (->> (fs/glob "." "*-doom/*.{icns,ico,png}")
+         (map str)
+         (copy-icons version tmpdir)
+         (zip-icons)
+         (latest-copy is-latest)
+         (clean))
+    (println (str "Created release/doom-icons-" version ".zip")
+             (if is-latest
+               (str "\nCreated release/doom-icons.zip")
+               ""))))
+
+(defn help
+  []
+  (println "
+
+Create a release .zip of all the main icon components
+
+Usage:
+
+./scripts/release [-t|--tag VERSION]
+
+  VERSION
+  A release version to use like 1.0.4. If not provided bumps from latest release
+  on origin remote."))
+
+(defn -main
+  [args]
+  (let [{:keys [options]} (parse-opts args cli-options)]
+    (cond (:help options) (help)
+          :else (create-icons-release
+                 {:version (or (:tag options) (latest-version))
+                  :is-latest (true? (:latest options))})))
+  (System/exit 0))
+
+(-main *command-line-args*)

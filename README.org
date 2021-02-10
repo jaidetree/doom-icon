@@ -42,7 +42,7 @@ Seems like good practice for Blender's sculpting tools
 
 *** How do I use this icon?
 
-- Download the latest doom icon files [[https://github.com/owner/repository/releases/latest/download/doom-icons.zip]]
+- Download the latest doom icon files [[https://github.com/eccentric-j/doom-icon/releases/latest/download/doom-icons.zip]]
 
 **** On OS X
 - Download the =doom.icns= file from one of the available icon directories
@@ -100,7 +100,7 @@ Very yes!
 Alternatives are welcome! Please note, there are some requirements:
 
 - doom.png 1024x1024 pixels in size
-- doom.iconset folder with expected sizes see [[./cute-icon/src/doom.iconset]] for reference
+- doom.iconset folder with expected sizes see [[./cute-doom/src/doom.iconset]] for reference
 - doom.icns file for OS X (I can help with this if needed)
 - doom.ico file for Windows users (use [[https://convertico.com/]])
 
@@ -145,3 +145,14 @@ People who have inspired or contributed to this project
 - @elken
 - @shankar2k
 - @tecosaur
+
+** Development
+
+*** Releases
+
+To create a .zip of all the icons without the source files run the following
+command:
+
+#+begin_src bash
+./scripts/release --latest
+#+end_src
