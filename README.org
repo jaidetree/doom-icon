@@ -52,6 +52,18 @@ Seems like good practice for Blender's sculpting tools
 
 [[./howto-use-icon.gif]]
 
+Or
+
+#+begin_src bash
+EMACS_APP="/Applications/Emacs.app"
+curl -o /tmp/doom.png https://raw.githubusercontent.com/eccentric-j/doom-icon/master/cute-doom/doom.png &&
+  sips -i /tmp/doom.png >/dev/null &&
+  DeRez -only icns /tmp/doom.png >/tmp/icns.rsrc &&
+  Rez -append /tmp/icns.rsrc -o "$EMACS_APP"$'/Icon\r' &&
+  SetFile -a C "$EMACS_APP" &&
+  SetFile -a V "$EMACS_APP"$'/Icon\r'
+#+end_src
+
 **** Linux
 
 (Thanks to [[https://github.com/drchsl][@drchsl]])
@@ -59,7 +71,7 @@ Seems like good practice for Blender's sculpting tools
 #+begin_src bash
 ICON="$HOME/.local/share/icons/doom.png"
 DESKTOP_FILE=/usr/local/share/applications/emacs.desktop
-wget https://raw.githubusercontent.com/eccentric-j/doom-icon/master/doom.png -O "$ICON" &&
+wget https://raw.githubusercontent.com/eccentric-j/doom-icon/master/cute-doom/doom.png -O "$ICON" &&
 sudo --preserve-env=ICON,DESKTOP_FILE sed -i "s|Icon=.*|Icon=$ICON|" $DESKTOP_FILE
 #+end_src
 
