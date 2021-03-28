@@ -52,7 +52,7 @@ Seems like good practice for Blender's sculpting tools
 
 [[./howto-use-icon.gif]]
 
-Or
+Or (Thanks to [[https://github.com/smallwat3r][@smallwat3r]])
 
 #+begin_src bash
 EMACS_APP="/Applications/Emacs.app"
