@@ -15,14 +15,26 @@
 
 (defmacro js-template-str
   [& args]
-  (let [[strs# args#] (partition-by string? args)]
-    `(cons [(clj->js ~strs#)] ~args#)))
+  (let [[strs# args#] (partition-by string? args)
+        result# (cons (clj->js (conj (vec strs#) "")) args#)]
+    `(list ~@result#)))
+
+(defmacro $
+  [& args]
+  `(apply ~zx (js-template-str ~@args)))
 
 (comment
+  (js/process.cwd)
   (macroexpand-1
-    (js-template-str "iconutil -c icns " (str "hello"))))
+    '(js-template-str "iconutil -c icns " (.join path (js/process.cwd) "icons/kitty-terminal/kitty.iconset")))
+
+  (apply zx (js-template-str "iconutil -c icns " (.join path (js/process.cwd) "icons/kitty-terminal/kitty.iconset")))
+  (macroexpand
+    '($ "iconutil -c icns " (.join path (js/process.cwd) "icons/kitty-terminal/kitty.iconset")))
+  ($ "iconutil -c icns " (.join path (js/process.cwd) "icons/kitty-terminal/kitty.iconset")))
 
 (defn create-iconset
+  ^:private
   [src-dir dest-name]
   (let [dirname (.dirname path src-dir)
         dest-file (str dest-name ".iconset")
@@ -33,15 +45,31 @@
       dest-path)))
 
 (defn iconset->icns
+  ^:private
   [src-path]
-  (println "src-path:" src-path)
   (p/do
-    (zx #js ["iconutil -c icns " ""] src-path)))
+    ($ "iconutil -c icns " src-path)
+    (s/replace src-path #"iconset$" "icns")))
 
 
-(defn -main
+(defn dir->icns
+  "
+  Main transform pipeline
+  Takes a src directory containing pngs of all required sizes
+  Copies src directory into {dest-name}.iconset
+  Uses macOS iconutil binary to convert iconset -> .icns file
+  "
   [src-dir dest-name]
   (p/-> src-dir
         (create-iconset dest-name)
         (iconset->icns)))
+
+
+(defn -main
+  "
+  Support cli invoking via nbb -m tasks.convert-icns
+  "
+  [src-dir dest-name]
+  (dir->icns src-dir dest-name))
+
 

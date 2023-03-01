@@ -40,12 +40,19 @@
      (.write img dest-path)
      dest-path)))
 
-(defn -main
+(defn resize-copies
   "
   Takes a src image path string, preferrably png, and a destination dir string
   Reads the src image and resizes it to make an iconset
   Writes the files to the destination dir
   Returns nil
+
+  @TODO Maybe src-path should be a directory that may contain specific sizes
+        and this should use those, scaling each available size down until the
+        next manual png.
+
+        That would support having a separate 16px src image from the 1024px src
+        image.
   "
   [src-path dest-dir]
   (p/catch
@@ -63,5 +70,14 @@
 
     (fn [err]
       (js/console.error err))))
+
+
+(defn -main
+  "
+  Support invoking with clj -m tasks.resize
+  "
+  [src-path dest-dir]
+  (resize-copies src-path dest-dir))
+
 
 
