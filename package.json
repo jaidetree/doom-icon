@@ -4,7 +4,8 @@
   "description": "A collection of custom icons for various apps",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "resize": "nbb -m tasks.resize",
+    "convert": "nbb -m tasks.convert-icns"
   },
   "repository": {
     "type": "git",
